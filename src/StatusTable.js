@@ -44,11 +44,12 @@ export default function StatusTable() {
     const [idGlobal, setIdGlobal] = useState(0);
     const [apiData, setApiData] = useState([]);
     const [count, setCount] = useState(0);
+    const url = 'http://192.168.1.140:5000/status/'
     const tick = () => {
         setCount((prevState) => prevState < 3 ? prevState + 1 : 0);
     }
     const getAPIData = () => {
-        fetch('http://localhost:8080/status/all')
+        fetch(url+'all')
             .then(res => res.json())
             .then((data) => {
                 setApiData(data);
@@ -76,7 +77,7 @@ export default function StatusTable() {
         setIsEdit(false);
     };
     var handleDelete = (id) => {
-        Axios.delete('http://localhost:8080/status/'+id);
+        Axios.delete(url+id);
     }
     var handleUpdate = (param) => {
         
@@ -85,7 +86,7 @@ export default function StatusTable() {
         var putid = param[2]
         Axios({
             method: 'put',
-            url: 'http://localhost:8080/status/'+putid,
+            url: url+putid,
             headers: {},
             data: {
                 version: putversion,
@@ -98,7 +99,7 @@ export default function StatusTable() {
         var poststatus = param[1];
         var response = Axios({
             method: 'post',
-            url: 'http://localhost:8080/status/add',
+            url: url+'add',
             headers: {},
             data: {
                 version: postversion,

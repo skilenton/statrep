@@ -44,7 +44,7 @@ export default function StatusTable() {
     const [idGlobal, setIdGlobal] = useState(0);
     const [apiData, setApiData] = useState([]);
     const [count, setCount] = useState(0);
-    const url = 'http://192.168.1.140:5000/status/'
+    const url = 'http://statrepapi.ap-southeast-1.elasticbeanstalk.com/status/'
     const tick = () => {
         setCount((prevState) => prevState < 3 ? prevState + 1 : 0);
     }
@@ -59,7 +59,7 @@ export default function StatusTable() {
         setCount(count + 1);
     }
     useEffect(() => {
-        const timer = setInterval(() => tick(), 100);
+        const timer = setInterval(() => tick(), 500);
         return () => clearInterval(timer);
     });
     useEffect(() => {
